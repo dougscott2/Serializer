@@ -26,7 +26,7 @@ public class Answers extends Serializer{
         int year = Integer.valueOf(userAnswer);
         answer.year = year;
         System.out.println("Is it good?");
-        answer.isItGood = userAnswer;
+        answer.isItGood = scanner.nextLine();
     }
     public String getTitle() {
         return title;
