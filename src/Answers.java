@@ -13,22 +13,19 @@ public class Answers extends Serializer{
     public Answers (){
     }
     void askQuestions() {
+        String userAnswer;
         Scanner scanner = new Scanner(System.in);
         System.out.println("What's your favorite movie?");
-        String userAnswer = scanner.nextLine();
-        answer.title = userAnswer;
+        answer.title = scanner.nextLine();
         System.out.println("Who's the main actor?");
-        userAnswer = scanner.nextLine();
-        answer.mainActor = userAnswer;
+        answer.mainActor =  scanner.nextLine();
         System.out.println("Who's the main actress?");
-        userAnswer = scanner.nextLine();
-        answer.mainActress = userAnswer;
+        answer.mainActress =  scanner.nextLine();
         System.out.println("What year did it come out?");
         userAnswer = scanner.nextLine();
         int year = Integer.valueOf(userAnswer);
         answer.year = year;
         System.out.println("Is it good?");
-        userAnswer = scanner.nextLine();
         answer.isItGood = userAnswer;
     }
     public String getTitle() {
