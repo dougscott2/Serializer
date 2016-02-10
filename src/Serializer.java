@@ -10,22 +10,25 @@ import java.util.Scanner;
 public class Serializer {
     static Answers answer;  //static object that can be used almost anywhere in the program
     public static void main(String[] args) {
-         answer = loadAnswers(); //not sure why i couldn't just say loadAnswers();
-        if (answer == null) {
-            answer = new Answers();
-            answer.askQuestions(); //askQuestions will put data into answer object
-        } else {
-            System.out.println("Want to change your answers?");
-            Scanner scanner = new Scanner(System.in);  //creating scanner
-            String userAnswer = scanner.nextLine();
-            if (userAnswer.equals("Yes") || userAnswer.equals("yes")) {
-                answer.askQuestions();
+        //answer = loadAnswers(); //not sure why i couldn't just say loadAnswers();
+        while (true) {
+            answer.loadAnswers();
+            if (answer  == null) {
+                answer = new Answers();
+                answer.askQuestions(); //askQuestions will put data into answer object
             } else {
-                System.out.println("K, bye.");
-                System.exit(0);
+                System.out.println("Want to change your answers?");
+                Scanner scanner = new Scanner(System.in);  //creating scanner
+                String userAnswer = scanner.nextLine();
+                if (userAnswer.equalsIgnoreCase("Yes") || userAnswer.equalsIgnoreCase("Y")) {
+                    answer.askQuestions();
+                } else {
+                    System.out.println("K, bye.");
+                    System.exit(0);
+                }
             }
+            saveAnswers();
         }
-        saveAnswers();
     }
     static void saveAnswers() {
         File f = new File("save.json");
@@ -36,7 +39,7 @@ public class Serializer {
             fw.write(contentToSave);
             fw.close();
         } catch (Exception e) {
-            System.out.println("Something went wrong...sorry!");
+            System.out.println("Something went wrong with saveAnswers()...sorry!");
         }
     }
     static Answers loadAnswers() {
@@ -51,7 +54,7 @@ public class Serializer {
             System.out.println(fileContents);
             return parser.parse(fileContents, Answers.class);
         } catch (Exception e) {
-            System.out.println("Something went wrong...sorry!");
+            System.out.println("Something went wrong with loadAnswers()...sorry!");
             return null;
         }
     }

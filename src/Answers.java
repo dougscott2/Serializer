@@ -9,7 +9,7 @@ public class Answers extends Serializer{
     String mainActor;
     int year;
     String mainActress;
-    String isItGood;
+    boolean isItGood;
 
     void askQuestions() {
         String userAnswer;
@@ -25,7 +25,7 @@ public class Answers extends Serializer{
         int year = Integer.valueOf(userAnswer);
         this.year = year;
         System.out.println("Is it good?");
-        isItGood = scanner.nextLine();
+        isItGood = Boolean.valueOf(scanner.nextLine());
     }
     public String getTitle() {
         return title;
@@ -43,7 +43,7 @@ public class Answers extends Serializer{
         return mainActress;
     }
 
-    public String getIsItGood() {
+    public Boolean getIsItGood() {
         return isItGood;
     }
 }
